@@ -1,0 +1,25 @@
+* text=auto
+
+*.cs text diff=csharp
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.exe binary
+*.dll binary
+
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+*.sln merge=union
+*.csproj merge=union
+*.json merge=union
+
+bin/ -diff
+obj/ -diff
