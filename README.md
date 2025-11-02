@@ -94,6 +94,51 @@ Incluye documentación y scripts de base de datos:
 - `Arkive_Tecnico_SOLID.md` → Documento técnico sobre SOLID y patrones aplicados
 
 ---
+## Automatización (Archivador)
+
+El proceso de archivo corre como Hosted Service dentro de la API.
+- Condición: Estado = 'Pendiente' y FechaRegistro ≤ (UTC) hoy - 90 días.
+- Acción: actualiza Estado → 'Archivado' y registra en `LogsCambiosEstado`.
+
+Configuración en `appsettings.json`:
+
+"Archivador": {
+  "Enabled": true,
+  "IntervalHours": 24,
+  "Hora": "02:30"         // opcional; si se define, ejecuta a esa hora local
+}
+
+Notas:
+- En desarrollo se puede reducir el intervalo para pruebas.
+- Si la BD graba en hora local, ajustar la comparación a `DateTime.Now`.
+
+---
+## Pruebas
+
+Proyecto: Arkive.Tests (xUnit).
+
+Ejecutar:
+dotnet test Arkive.Tests --logger "trx;LogFileName=test_results.trx"
+
+Incluye:
+- Mapeo de estados (string → código) utilizado por el archivador.
+- Smoke test de API: GET /api/health ⇒ 200 OK.
+
+---
+## CI/CD (GitHub Actions)
+
+Workflows en `.github/workflows/`:
+
+1) PR-Validate: build + tests en PR hacia develop/main.
+2) Build & Release: al crear tag vX.Y.Z en main (publica artefactos y script EF idempotente).
+3) Deploy Manual (Azure App Service): despliegue bajo demanda + aplicación de migraciones + health checks.
+
+Secrets requeridos (en GitHub → Settings → Secrets → Actions):
+- AZURE_WEBAPP_PUBLISH_PROFILE
+- AZURE_SQL_CONNECTIONSTRING
+- AZURE_WEBAPP_NAME
+
+---
 
 ## ✨ Autor
 

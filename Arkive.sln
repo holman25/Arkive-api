@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arkive.Domain", "Arkive.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arkive.Infrastructure", "Arkive.Infrastructure\Arkive.Infrastructure.csproj", "{F265CC29-3E50-41A6-8358-770E0197F2AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arkive.Tests", "Arkive.Tests\Arkive.Tests.csproj", "{1B612C4C-2C53-41D6-861D-E8766776CD8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{F265CC29-3E50-41A6-8358-770E0197F2AE}.Release|x64.Build.0 = Release|Any CPU
 		{F265CC29-3E50-41A6-8358-770E0197F2AE}.Release|x86.ActiveCfg = Release|Any CPU
 		{F265CC29-3E50-41A6-8358-770E0197F2AE}.Release|x86.Build.0 = Release|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Debug|x64.Build.0 = Debug|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Debug|x86.Build.0 = Debug|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Release|x64.ActiveCfg = Release|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Release|x64.Build.0 = Release|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Release|x86.ActiveCfg = Release|Any CPU
+		{1B612C4C-2C53-41D6-861D-E8766776CD8E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
