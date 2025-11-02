@@ -1,25 +1,28 @@
 ﻿using Arkive.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Arkive.Infrastructure.Persistence;
-
-public class AppDbContext : DbContext
+namespace Arkive.Infrastructure.Persistence
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-    public DbSet<Documento> Documentos => Set<Documento>();
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public class AppDbContext : DbContext
     {
-        modelBuilder.Entity<Documento>(e =>
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        public DbSet<Documento> Documentos => Set<Documento>();
+        public DbSet<LogCambioEstado> LogsCambiosEstado => Set<LogCambioEstado>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            e.ToTable("Documentos");
-            e.HasKey(x => x.Id);
-            e.Property(x => x.Titulo).HasMaxLength(200).IsRequired();
-            e.Property(x => x.Autor).HasMaxLength(150).IsRequired();
-            e.Property(x => x.Tipo).HasMaxLength(50).IsRequired();
-            e.Property(x => x.Estado).HasMaxLength(20).IsRequired();
-            e.Property(x => x.FechaRegistro).HasColumnType("datetime2");
-        });
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<LogCambioEstado>(b =>
+            {
+                b.ToTable("LogsCambiosEstado");
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Motivo).HasMaxLength(500);
+                b.Property(x => x.UsuarioSistema).HasMaxLength(100);
+                b.HasIndex(x => x.DocumentoId);
+                b.HasIndex(x => x.FechaCambioUtc);
+            });
+        }
     }
 }
